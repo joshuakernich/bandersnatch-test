@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			width: 500px;
+			margin: auto;
+		}
+
+		.overlay{
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			background: rgba(0,0,0,0.5);
+			display: none;
+		}
+
+		.player{
+			position: relative;
+		}
+
+		button{
+			font-size: 20px;
+			background: white;
+			border: none;
+			padding: 10px;
+			display: block;
+			width: 90%;
+			margin: 5%;
+			border: 1px solid black;
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript" src='jquery-3.4.1.min.js'></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			$('.go-button').click(function(){
+				$('video')[0].play();
+				$('.go-button').hide();
+			})
+
+			$('.overlay button').click(function(){
+				$('video')[0].play();
+				$('.overlay').hide();
+			})
+
+
+			var iInterval = setInterval(function(){
+
+				if($('video')[0].currentTime > 1.5){
+					clearInterval(iInterval);
+					$('video')[0].pause();
+					$('.overlay').show();
+				}
+			},50);
+		})
+	</script>
+</head>
+<body>
+	<div class='player'>
+		<video src='SampleVideo_720x480_10mb.mp4' style='width: 100%;'></video>
+
+		<div class='overlay'>
+			<button>DO THE FIRST THING</button>
+			<button>DO THE SECOND THING</button>
+		</div>
+	</div>
+
+	<button class='go-button'>LET'S GO!</button>
+</body>
+</html>
